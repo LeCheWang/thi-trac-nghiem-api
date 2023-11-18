@@ -94,10 +94,9 @@ module.exports = {
       exam: exam._id,
     });
 
-    return res
-      .status(200)
-      .message(
-        `Chúc mừng bạn đã hoàn thành bài thi, Số câu trả lời đúng: ${number_correct_answer}/${exam.total_question}`,
-      );
+    return res.status(200).json({
+      statusCode: 200,
+      message: `Chúc mừng bạn đã hoàn thành bài thi, Số câu trả lời đúng: ${number_correct_answer}/${exam.total_question}`,
+    });
   },
 };
