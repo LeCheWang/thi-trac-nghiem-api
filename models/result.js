@@ -11,7 +11,7 @@ const resultSchema = mongoose.Schema(
   },
   {
     versionKey: false,
-    timestamps: false,
+    timestamps: true,
   },
 );
 
