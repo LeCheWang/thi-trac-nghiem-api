@@ -27,6 +27,20 @@ module.exports = {
     ) {
       throw new ErrorResponse(400, 'tổng câu hỏi không đúng');
     }
+
+    const question1 = await Question.countDocuments({level: 1})
+    if (question1 < easy_question){
+      throw new ErrorResponse(400, "Số câu hỏi DỄ không đủ để thêm bài thi. Hãy tạo thêm câu hỏi");
+    }
+    const question2 = await Question.countDocuments({level: 2})
+    if (question2 < normal_question){
+      throw new ErrorResponse(400, "Số câu hỏi TRUNG BÌNH không đủ để thêm bài thi. Hãy tạo thêm câu hỏi");
+    }
+    const question3 = await Question.countDocuments({level: 3})
+    if (question3 < difficult_question){
+      throw new ErrorResponse(400, "Số câu hỏi KHÓ không đủ để thêm bài thi. Hãy tạo thêm câu hỏi");
+    }
+
     const exam = await Exam.create(body);
     return res.status(201).json(exam);
   },
